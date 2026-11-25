@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgendaPro | Calendário de compromissos</title>
+  <meta name="description" content="Calendário interativo para adicionar, editar e remover compromissos por data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <section class="calendario" aria-label="Calendário">
+      <header class="cal-topo">
+        <div>
+          <p class="marca">AgendaPro</p>
+          <h1 id="titulo-mes"></h1>
+        </div>
+        <div class="nav">
+          <button class="btn-nav" id="ant" aria-label="Mês anterior">‹</button>
+          <button class="btn-hoje" id="hoje">Hoje</button>
+          <button class="btn-nav" id="prox" aria-label="Próximo mês">›</button>
+        </div>
+      </header>
+      <div class="semana" aria-hidden="true">
+        <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+      </div>
+      <div class="grade" id="grade" role="grid"></div>
+    </section>
+
+    <aside class="lateral">
+      <div class="dia-topo">
+        <div>
+          <p class="dia-semana" id="dia-semana"></p>
+          <h2 id="dia-titulo"></h2>
+        </div>
+        <button class="btn btn--principal" id="novo">+ Compromisso</button>
+      </div>
+      <ul class="eventos" id="eventos" aria-live="polite"></ul>
+
+      <div class="proximos">
+        <h3>Próximos 7 dias</h3>
+        <ul id="proximos"></ul>
+      </div>
+    </aside>
+  </div>
+
+  <dialog class="modal" id="modal">
+    <form id="form" novalidate>
+      <h2 id="modal-titulo">Novo compromisso</h2>
+      <label>Título<input id="f-titulo" type="text" maxlength="80" placeholder="Ex.: Reunião com cliente" required></label>
+      <div class="linha">
+        <label>Data<input id="f-data" type="date" required></label>
+        <label>Início<input id="f-inicio" type="time" required></label>
+        <label>Fim<input id="f-fim" type="time"></label>
+      </div>
+      <fieldset class="cores">
+        <legend>Categoria</legend>
+        <div id="f-cats"></div>
+      </fieldset>
+      <label>Local ou link <small>(opcional)</small><input id="f-local" type="text" maxlength="120"></label>
+      <label>Observações <small>(opcional)</small><textarea id="f-obs" rows="2" maxlength="300"></textarea></label>
+      <p class="erro" id="erro" role="alert"></p>
+      <div class="modal__acoes">
+        <button type="button" class="btn btn--perigo" id="f-excluir" hidden>Excluir</button>
+        <span class="espaco"></span>
+        <button type="button" class="btn btn--fantasma" id="f-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn--principal">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
